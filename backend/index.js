@@ -17,10 +17,12 @@ const app = express();
 
 
 
-app.use(cors(
-    Credentials = true,
-    origin= ['http//localost:4200', 'http://127.0.0.1:4200']
-));
+app.use(cors({
+  origin: 'https://mean-crm-frontend.vercel.app', // Frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
