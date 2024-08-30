@@ -1,0 +1,230 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  /* Fixed height to viewport height */
+}
+
+/*chrome*/
+.dashboard-container ::-webkit-scrollbar {
+  display: none;
+}
+
+.main-content {
+  flex: 1;
+  /* Take the remaining space */
+  display: flex;
+  overflow: auto;
+  margin-bottom: 40px;
+
+}
+
+/* Hides vertical scrollbar while allowing vertical scroll */
+.messages-section {
+  flex: 0 0 300px;
+  /* Fixed width */
+  background-color: #fff;
+  padding: 20px;
+  margin-right: 20px;
+  overflow-y: auto;
+  /* Enables vertical scrolling */
+  max-height: calc(100vh - 40px);
+  /* Ensure it fits within the viewport */
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: #040436;
+  word-wrap: break-word;
+  /* Ensure long words break into the next line */
+  white-space: pre-wrap;
+  /* Handle whitespace properly */
+  overflow-wrap: break-word;
+  /* Break words to fit within the box */
+
+}
+
+.messages-section h2 {
+  top: 0;
+  position: sticky;
+  background-color: #fff;
+  text-align: center;
+  z-index: 1;
+  /* Ensure it stays on top while scrolling */
+  color: #040436;
+}
+
+
+.messages-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-section::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.messages-section::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+
+}
+
+/*.single-line-message {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}*/
+
+.content {
+  flex: 1;
+  /* Take the remaining space */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: #040436;
+
+}
+
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allow items to wrap to the next line */
+
+}
+
+.mat-grid-tile-content {
+  background-color: #040436;
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  /* Take full width of the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  /* Add some space between all cards */
+}
+
+.mat-grid-tile h3 {
+  margin: 0;
+  color: white;
+}
+
+.mat-grid-tile h3 span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.container {
+  margin: 20px;
+  padding: 20px;
+  height: auto;
+  /* Add margin-bottom for spacing at the bottom */
+  margin-bottom: 40px;
+  /* Adjust the value as needed */
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-icon {
+  margin-left: -30px;
+  /* Adjust icon position */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #040436;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.mat-paginator {
+  margin-top: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .messages-section {
+    display: none;
+    /* Hide the message section on small screens */
+  }
+
+  .messages-section-outside {
+    flex: 0 0 300px;
+    /* Fixed width */
+    background-color: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    overflow-y: auto;
+    /* Enables vertical scrolling */
+    max-height: calc(100vh - 40px);
+    /* Ensure it fits within the viewport */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: #040436;
+    word-wrap: break-word;
+    /* Ensure long words break into the next line */
+    white-space: pre-wrap;
+    /* Handle whitespace properly */
+    overflow-wrap: break-word;
+    /* Break words to fit within the box */
+  }
+
+  .messages-section-outside h2 {
+    top: 0;
+    position: sticky;
+    background-color: #fff;
+    text-align: center;
+    z-index: 1;
+    /* Ensure it stays on top while scrolling */
+    color: #040436;
+  }
+
+
+  .messages-section-outside ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .messages-section-outside ::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .messages-section-outside ::-webkit-scrollbar-track {
+    background-color: #fff;
+
+  }
+
+  .content {
+    padding-left: 0 30px;
+    color: #040436;
+  }
+
+  th,
+  td {
+    color: #040436;
+  }
+}

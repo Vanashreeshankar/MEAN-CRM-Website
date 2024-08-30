@@ -1,0 +1,76 @@
+<div class="bg-class">
+
+    <header>
+      <mat-toolbar>
+        <span class="title">CRM</span>
+        <div class="button-container">
+  
+          <button mat-button routerLink="/signin" routerLinkActive="active">SignIn</button>
+          <button mat-button routerLink="/signup" routerLinkActive="active">SignUp</button>
+        </div>
+  
+      </mat-toolbar>
+  
+    </header>
+  
+  
+    <h1>Reset Password</h1>
+  
+    <div class="container">
+  
+      <mat-card class="box">
+  
+        <div class="sub-container">Reset Password</div>
+  
+  
+        <form [formGroup]="resetForm" class="c-form">
+          <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput required formControlName="email">
+            
+          </mat-form-field>
+  
+          <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+            <mat-label>Code</mat-label>
+            <input matInput required formControlName="pin">
+         
+  
+          </mat-form-field>
+
+          <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+            <mat-label>New Password</mat-label>
+            <input matInput required formControlName="newPassword" type="{{ hide ? 'password' : 'text' }}">
+          <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+          <mat-error *ngIf="resetForm.controls['newPassword'].touched && resetForm.controls['newPassword'].invalid">
+              <!-- Error handling -->
+          </mat-error>
+          
+  
+          </mat-form-field>
+  
+  
+         
+  
+  
+          <div class="center">
+            <button mat-flat-button class="btn" type="button" (click)="handleSubmit()"
+              [disabled]="!(resetForm.valid && resetForm.dirty)">SignIn</button>
+          </div>
+  
+  
+  
+  
+  
+        </form>
+  
+      </mat-card>
+  
+  
+  
+  
+  
+  
+  
+    </div>
+  
+  </div>

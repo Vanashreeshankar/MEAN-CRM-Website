@@ -1,0 +1,145 @@
+.bg-class {
+    background-image: url('../../assets/bgcrm.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title {
+    font-size: 2.6rem; /* Adjusted for responsiveness */
+    color: #ffffff;
+}
+
+.mat-toolbar {
+    background-color: transparent !important;
+}
+
+.button-container {
+    margin-left: auto;
+}
+
+button {
+    margin-right: 10px;
+    color: #ffffff !important;
+    font-size: 1.4rem;
+}
+
+.container {
+    display: flex;
+    justify-content: start; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+    height: 100%; /* Ensure the container takes full height */
+    box-sizing: border-box;
+    padding-top: 10px; /* Adjust padding to push content upwards */
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+.box {
+    width: 400px; /* Set width of the card */
+    padding: 20px; /* Add padding inside the card */
+    background-color: white; /* Set background color of the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.c-form {
+    display: flex;
+    flex-direction: column; /* Arrange form items vertically */
+}
+
+.sub-container {
+    font-size: 1.7rem; /* Set font size for "SignUp" text */
+    margin-bottom: 10px; /* Adjust margin for better spacing */
+    color: #040436; /* Set color of the text */
+    text-align: center;
+    
+}
+
+.c-width {
+    width: 100%;
+    margin-bottom: 5px; /* Reduce margin between input fields */
+}
+
+.link-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px; /* Reduce top margin for the container */
+}
+
+.link-container p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.link-container .span {
+    margin-left: auto; /* Push 'Create an Account' to the right */
+}
+
+p {
+    margin-top: 5px; /* Reduce top margin for the paragraph */
+}
+
+mat-form-field {
+    border-color: #040436;
+    border-radius: 50px;
+}
+
+.center {
+    text-align: center;
+    color: #040436;
+}
+
+.btn, .btn1 {
+    border: 1px solid #040436;
+    border-radius: 20px;
+    color: #040436 !important;
+    margin-right: 10px;
+    font-size: 1rem; /* Adjusted font size */
+    font-weight : bold ;
+}
+
+span {
+    font-size: 1rem; /* Adjusted font size */
+    color: #040436;
+    cursor: pointer;
+    padding-bottom: 10px;
+    
+}
+.span{
+    font-size: 1.1rem;
+    margin-left: 80px; 
+    font-weight : bold ;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.0rem;
+    }
+    .btn, .btn1 {
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 20px;
+    }
+    .box {
+        width: 100%; /* Adjust to full width on smaller screens */
+    }
+}

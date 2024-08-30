@@ -1,0 +1,126 @@
+.custom-dialog {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(2, 2, 20, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-status {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.status-tag {
+  background-color: #040436;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.subject-close {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.ticket-subject {
+  flex: 1; /* Take up available space */
+  margin-right: 16px; /* Space between subject and button */
+  word-break: break-word; /* Break long words */
+  color: #000; /* Set subject text color to black */
+}
+
+.close-button {
+  background-color: #fff;
+  color: black;
+  border: 2px solid #040436;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #040436;
+  color: #fff;
+}
+
+.custom-dialog-content {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.custom-dialog-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.custom-dialog-content .conversation {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.custom-dialog-content .timestamp {
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+  margin: 16px 0;
+}
+
+.custom-dialog-content .sender-message,
+.custom-dialog-content .receiver-message {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  max-width: 80%;
+  margin: 8px 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.custom-dialog-content .sender-message {
+  align-self: flex-start;
+  background-color: #d1d1d4;
+}
+
+.custom-dialog-content .receiver-message {
+  align-self: flex-end;
+  background-color: #d1d1d4;
+}
+
+.custom-dialog-content .message-sender {
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+.custom-dialog-content .message-text {
+  margin: 0;
+}
+
+.custom-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-dialog-actions button {
+  background-color: #040436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+}

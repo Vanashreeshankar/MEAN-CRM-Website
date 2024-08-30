@@ -1,0 +1,49 @@
+h1 {
+  color: #040436!important;
+  font-size: 24px !important;
+  margin-bottom: 10px !important;
+  font-weight: 20px !important;
+}
+
+/*chrome*/
+.form-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.form-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 10px;
+   
+}
+
+textarea {
+  min-height: 20px;
+}
+
+.button-container {
+  
+  display: flex;
+  justify-content: center; /* Center align buttons */
+  gap: 20px; /* Add gap between buttons */
+}
+
+button{
+  background-color: #040436;
+  color: white;
+  border: none;
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #040436;
+}
+

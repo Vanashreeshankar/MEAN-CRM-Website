@@ -1,0 +1,247 @@
+.custom-dialog {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(2, 2, 20, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #000000; /* Add border to update component */
+  
+}
+
+.custom-dialog .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-dialog .header h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #040436;
+}
+
+.subject-close {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.status-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 8px; /* Add some space between the status and the subject */
+  
+}
+
+.subject-and-close {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.subject-close p {
+  margin: 0;
+  font-size: 16px;
+  color: #000;
+}
+
+.custom-dialog-content {
+  max-height: 400px; /* Adjust as necessary */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.custom-dialog-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.custom-dialog-content .conversation {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.custom-dialog-content .timestamp {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  margin: 16px 0;
+}
+
+.custom-dialog-content .sender-message,
+.custom-dialog-content .receiver-message {
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  max-width: 80%;
+  margin: 8px 0;
+  word-wrap: break-word; /* Ensure long words break into the next line */
+  white-space: pre-wrap; /* Handle whitespace properly */
+  overflow-wrap: break-word; /* Break words to fit within the box */
+}
+
+.custom-dialog-content .sender-message {
+  align-self: flex-start;
+  background-color: #d1d1d4;
+}
+
+.custom-dialog-content .receiver-message {
+  align-self: flex-end;
+  background-color: #d1d1d4;
+}
+
+.custom-dialog-content .message-sender {
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+.custom-dialog-content .message-text {
+  margin: 0;
+}
+
+.status-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  top: 8px;
+  right: 8px;
+  background-color: #040436;
+  color: #fff;
+}
+
+.update-ticket {
+  margin-top: 24px;
+}
+
+.update-ticket h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.update-ticket form {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-ticket form div {
+  margin-bottom: 16px;
+}
+
+.update-ticket form label {
+  font-weight: bold;
+}
+
+.update-ticket form textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.update-ticket form .form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-ticket form button {
+  background-color: #040436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.update-ticket form button:disabled {
+  background-color: #ccc;
+}
+
+
+.status-message {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+}
+
+
+.custom-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-dialog-actions button {
+  background-color: #040436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.close-ticket-button {
+  background-color: #040436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.subject {
+  word-wrap: break-word; /* Ensure long words break into the next line */
+  white-space: normal; /* Allow the text to wrap */
+  overflow-wrap: break-word; /* Break words to fit within the box */
+  flex: 1; /* Allow the subject to take up remaining space */
+}
+
+.close-button-container {
+  flex-shrink: 0; /* Prevent the close button from shrinking */
+}
+
+@media (max-width: 768px) {
+  .subject-and-close {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .subject {
+      margin-bottom: 8px;
+  }
+
+  .close-button-container {
+      align-self: flex-end;
+  }
+
+  .custom-dialog {
+      padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-dialog {
+      padding: 12px;
+  }
+
+  .custom-dialog-content {
+      max-height: 300px;
+  }
+
+  .update-ticket form button {
+      font-size: 12px;
+      padding: 6px 12px;
+  }
+}

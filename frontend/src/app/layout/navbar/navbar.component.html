@@ -1,0 +1,23 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-toolbar>
+      <div class="icon-container">
+        <mat-icon *ngIf="role === 'admin' || role === 'user'" matTooltip="Dashboard"
+                  routerLink="/dashboard" routerLinkActive="active">dashboard</mat-icon>
+        <mat-icon *ngIf="role === 'admin'" matTooltip="Clients"
+                  routerLink="/client" routerLinkActive="active">person</mat-icon>
+        <mat-icon *ngIf="role === 'admin'" matTooltip="Tickets"
+                  routerLink="/ticket" routerLinkActive="active">confirmation_number</mat-icon>
+        <mat-icon *ngIf="role === 'user'" matTooltip="Profile"
+                  routerLink="/profile" routerLinkActive="active">person</mat-icon>
+        <!-- Message Icon for small screens -->
+        <mat-icon *ngIf="role === 'admin'  && isSmallScreen" matTooltip="Messages" (click)="toggleMessages()">
+          message
+        </mat-icon>
+      </div>
+    </mat-toolbar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

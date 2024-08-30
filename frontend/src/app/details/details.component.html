@@ -1,0 +1,49 @@
+<div class="profile-wrapper">
+  <div class="profile-scrollable-content">
+
+
+<div class="flexible-container">
+  <!-- Display client -->
+  <div *ngIf="client" class="card-container client-card-container">
+    <mat-card class="client-card" >
+      <mat-card-content>
+       
+        <h2>{{ client.client.first_name }} {{ client.client.middle_name }} {{ client.client.last_name }}</h2>
+        <p><strong>Organization:</strong> {{client.client.organization_name}}</p>
+        <p><strong>Email:</strong> {{client.client.email_address}}</p>
+        <p><strong>Phone:</strong> {{client.client.phone_number}}</p>
+        <p><strong>Address:</strong> {{client.client.street}}, {{client.client.city}}, {{client.client.state}}, {{client.client.zip}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Display tickets -->
+  <div  class="card-container ticket-card-container">
+    <mat-card class="ticket-card">
+      <div class="header-container">
+        <h2>Tickets</h2>
+      
+     
+      </div>
+      <mat-card-content>
+        <div class="nested-cards-container">
+          <mat-card *ngFor="let ticket of client?.ticket" class="nested-card" (click)="onClick(ticket._id)">
+            <mat-card-content>
+              <div class="ticket-content">
+                <p><strong>{{ticket?.subject}}</strong></p>
+                <span class="ticket-status">{{ticket?.status}}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Update component appears based on showUpdate flag -->
+  <div *ngIf="showUpdate" class="card-container update-container">
+    <app-update [ticketId]="selectedTicketId" (closeUpdate)="handleCloseUpdate()"></app-update>
+  </div>
+</div>
+  </div>
+</div>

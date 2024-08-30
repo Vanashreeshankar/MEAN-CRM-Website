@@ -1,0 +1,70 @@
+<div class="ticket">
+  <h1>Ticket</h1>
+  <div class="container">
+    <div class="sub-container">
+      <mat-form-field class="filter-field">
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          class="input-expandable"
+          [(ngModel)]="filterValue"
+          placeholder="#, name, subject, etc.,"
+          #input
+         
+          (keyup)="applyFilter($event)">
+        <mat-icon class="search-icon">search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="table-container">
+      <table mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let tickets" (click)="detailsOfTicket(tickets._id)">
+            {{tickets._id}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="conversations">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let tickets" (click)="onRowClick(tickets.clientId)">
+            <span *ngFor="let item of getConversationWithIndex(tickets.conversations)">
+              {{item.index === 0 ? item.conversation.sender : ''}}
+            </span>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject </th>
+          <td mat-cell *matCellDef="let tickets">{{tickets.subject}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let tickets" class="row-with-buttons" (click)="toggleButtons(tickets)">
+            <div class="cell-content">
+              <span>{{tickets.status}}</span>
+              <div class="button-container" *ngIf="tickets.showButtons">
+                <button mat-icon-button class="delete-button" (click)="deleteTicket(tickets._id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button class="close-button" (click)="closeTicket(tickets._id)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="openAt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Opened Date </th>
+          <td mat-cell *matCellDef="let tickets">{{tickets.openAt | date: 'dd/MM/yyyy'}}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10]"></mat-paginator>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,88 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column; /* Ensure flex direction is column */
+}
+
+/* Hides scrollbar while allowing scrolling */
+.ticket ::-webkit-scrollbar {
+  display: none;
+}
+
+.ticket h1 {
+  margin-left: 20px; /* Add space between h1 and sub-container */
+}
+
+
+.ticket .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 20px 60px; /* Adjust margin for desired spacing */
+  padding-bottom: 80px; /* Add padding to the bottom */
+}
+
+.ticket .sub-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.search-icon {
+  margin-left: -30px;
+  /* Adjust icon position */
+}
+
+.ticket .table-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket th,
+.ticket td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #040436;
+}
+
+.ticket th {
+  background-color: #f2f2f2;
+}
+
+.ticket .mat-paginator {
+  margin-top: 20px;
+}
+
+/* Add a margin to the bottom of the table container */
+.ticket .table-container {
+  margin-bottom: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .ticket .container {
+    padding: 0 10px;
+  }
+
+  .ticket th,
+  .ticket td {
+    color: #040436;
+  }
+}

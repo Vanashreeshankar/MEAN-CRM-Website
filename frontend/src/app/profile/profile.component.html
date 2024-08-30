@@ -1,0 +1,59 @@
+<div class="profile-wrapper">
+  <div class="profile-scrollable-content">
+    <div class="add-button-container">
+      <button mat-button [matMenuTriggerFor]="menu">Add</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="addClient()">Client</button>
+        <button mat-menu-item (click)="addTicket()">Ticket</button>
+      </mat-menu>
+    </div>
+
+    <div class="empty-message-container" *ngIf="!client && tickets.length === 0">
+      <p>No user or tickets available. Add user details and tickets.</p>
+    </div>
+
+    <div class="flexible-container">
+      <div *ngIf="client" class="card-container client-card-container">
+        <mat-card class="client-card" (click)="editClient(client)">
+          <mat-card-content>
+            <mat-icon>edit</mat-icon>
+            <h2>{{client.first_name}} {{client.middle_name}} {{client.last_name}}</h2>
+            <p><strong>Organization:</strong> {{client.organization_name}}</p>
+            <p><strong>Email:</strong> {{client.email_address}}</p>
+            <p><strong>Phone:</strong> {{client.phone_number}}</p>
+            <p><strong>Address:</strong> {{client.street}}, {{client.city}}, {{client.state}}, {{client.zip}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div *ngIf="tickets.length > 0" class="card-container ticket-card-container">
+        <mat-card class="ticket-card">
+          <div class="header-container">
+            <h2>Tickets</h2>
+            <mat-icon *ngIf="!deleteMode" (click)="toggleDeleteMode()">delete</mat-icon>
+            <button *ngIf="deleteMode" mat-icon-button (click)="deleteSelectedTickets()">
+              <mat-icon>{{ selectedTicketsCount > 1 ? 'delete' : 'delete' }}</mat-icon>
+            </button>
+          </div>
+          <mat-card-content>
+            <div class="nested-cards-container">
+              <mat-card *ngFor="let ticket of tickets" class="nested-card" (click)="onClick(ticket._id)">
+                <mat-card-content>
+                  <div class="ticket-content">
+                    <mat-checkbox *ngIf="deleteMode" [(ngModel)]="ticket.selected"></mat-checkbox>
+                    <p><strong>{{ticket.subject}}</strong></p>
+                    <span class="ticket-status">{{ticket.status}}</span>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div *ngIf="showUpdate" class="card-container update-container">
+        <app-update [ticketId]="selectedTicketId" (closeUpdate)="handleCloseUpdate()"></app-update>
+      </div>
+    </div>
+  </div>
+</div>

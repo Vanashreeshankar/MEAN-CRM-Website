@@ -1,0 +1,22 @@
+<div class="custom-dialog">
+  <div class="ticket-status" *ngIf="ticket">
+    <p class="status-tag"><strong>{{ ticket.result.status }}</strong></p>
+  </div>
+  <div mat-dialog-content *ngIf="ticket" class="custom-dialog-content">
+    <div class="subject-close">
+      <p class="ticket-subject"><strong><h2>{{ ticket.result.subject }}</h2></strong></p>
+      <button mat-button (click)="closeTicket(ticket.result._id)" class="close-button">Close Ticket</button>
+    </div>
+   
+    <div *ngFor="let conversation of ticket.result.conversations" class="conversation">
+      <div class="timestamp">{{ formatDate(conversation.msgAt) }}</div>
+      <div [ngClass]="{ 'sender-message': isSender(conversation.sender), 'receiver-message': !isSender(conversation.sender) }">
+        <p class="message-sender">{{ conversation.sender }}</p>
+        <p class="message-text">{{ conversation.message }}</p>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="custom-dialog-actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+  </div>
+</div>

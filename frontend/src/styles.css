@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.mat-mdc-snack-bar-container {
+    --mdc-snackbar-container-color: white !important;
+    --mdc-snackbar-supporting-text-color: #040436 !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 40vw !important;
+    min-width: 90% !important;
+    max-width: 100vw !important;
+    margin-top: 70px !important;
+    padding: 20px !important;
+    border-radius: 0;
+}
+

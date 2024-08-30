@@ -1,0 +1,67 @@
+<div class="client">
+    <h1>Client</h1>
+    <div class="container">
+        <div class="sub-container">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" 
+                placeholder="organization, name, etc.,"
+                #input>
+                <mat-icon class="search-icon">search</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="organization_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Organization </th>
+                    <td mat-cell *matCellDef="let clients" (click)="detailsOfClient(clients._id)">
+                        {{clients.organization_name}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="first_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let clients" (click)="onRowClick(clients.clientId._id)">
+                        {{clients.first_name}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email_address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let clients" (click)="toggleButtons(clients)">
+                        <div class="cell-content">
+                            <span>{{clients.email_address}}</span>
+                            <div class="button-container" *ngIf="clients.showButtons">
+                                <button mat-icon-button class="delete-button" (click)="deleteClients(clients._id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button mat-icon-button class="edit-button" (click)="editClient(clients)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="phone_number">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone No </th>
+                    <td mat-cell *matCellDef="let clients">{{clients.phone_number}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+                    <td mat-cell *matCellDef="let clients">{{clients.city}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="state">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+                    <td mat-cell *matCellDef="let clients">{{clients.state}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10]"></mat-paginator>
+        </div>
+    </div>
+</div>

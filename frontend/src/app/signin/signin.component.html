@@ -1,0 +1,75 @@
+<div class="bg-class">
+
+  <header>
+    <mat-toolbar>
+      <span class="title">CRM</span>
+      <div class="button-container">
+
+        <button mat-button routerLink="/signin" routerLinkActive="active">SignIn</button>
+        <button mat-button routerLink="/signup" routerLinkActive="active">SignUp</button>
+      </div>
+
+    </mat-toolbar>
+
+  </header>
+
+
+  <h1>signim</h1>
+
+  <div class="container">
+
+    <mat-card class="box">
+
+      <div class="sub-container">SignIn</div>
+
+
+      <form [formGroup]="signinForm" class="c-form">
+        <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput required formControlName="email">
+          <mat-error *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].invalid">
+            <span *ngIf="signinForm.controls['email'].errors?.['required']">This field is mandatory</span>
+            <span *ngIf="signinForm.controls['email'].errors?.['pattern']">This field is invalid</span>
+
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput required formControlName="password" type="{{ hide ? 'password' : 'text' }}">
+          <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+          <mat-error *ngIf="signinForm.controls['password'].touched && signinForm.controls['password'].invalid">
+              <!-- Error handling -->
+          </mat-error>
+      </mat-form-field>
+
+      <div class="link-container">
+        <p (click)="forgotPasswordAction()">
+          <span>Forgot Password?</span>
+          <span class="span" routerLink="/signup">Create an Account</span>
+        </p>
+      </div>
+
+
+        <div class="center">
+          <button mat-flat-button class="btn" type="button" (click)="handleSubmit()"
+            [disabled]="!(signinForm.valid && signinForm.dirty)">SignIn</button>
+        </div>
+
+
+
+
+
+      </form>
+
+    </mat-card>
+
+
+
+
+
+
+
+  </div>
+
+</div>

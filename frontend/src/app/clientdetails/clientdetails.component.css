@@ -1,0 +1,43 @@
+.custom-dialog {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(2, 2, 20, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.custom-dialog h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #040436;
+}
+
+.custom-dialog-content p {
+  margin: 16px 0; /* Added margin to create space between each <p> tag */
+  font-size: 16px;
+  color: #000;
+}
+
+.custom-dialog-content p.label {
+  font-weight: 600; /* Increased font-weight for labels */
+}
+
+.custom-dialog-content p span {
+  font-weight: normal; /* Normal font-weight for span elements */
+}
+
+.custom-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-dialog-actions button {
+  background-color:#040436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+}

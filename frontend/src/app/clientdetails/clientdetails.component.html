@@ -1,0 +1,14 @@
+<div class="custom-dialog">
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content *ngIf="client" class="custom-dialog-content">
+        <p class="label">Organization Name: <span>{{ client.result.organization_name }}</span></p>
+        <p class="label">First Name: <span>{{ client.result.first_name }} {{ client.result.middle_name }} {{ client.result.last_name }}</span></p>
+        <p class="label">Email Address: <span>{{ client.result.email_address }}</span></p>
+        <p class="label">Phone Number: <span>{{ client.result.phone_number }}</span></p>
+        <p class="label">City: <span>{{ client.result.city }}</span></p>
+        <p class="label">State: <span>{{ client.result.state }}</span></p>
+    </div>
+    <div mat-dialog-actions class="custom-dialog-actions">
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</div>

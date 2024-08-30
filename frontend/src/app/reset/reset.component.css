@@ -1,0 +1,98 @@
+.bg-class{
+    background-image: url('../../assets/bgcrm.jpg');
+    background-size: cover;
+    background-position: center;
+    height:100vh;
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between; /* Align items with space between them */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Add some padding for spacing */
+}
+
+.title {
+    font-size: 54px; /* Set font size for the "CRM" text */
+    color: #ffff;
+}
+
+.mat-toolbar {
+    background-color: transparent !important; /* Set toolbar background color to transparent */
+}
+
+.button-container{
+    margin-left: auto;
+}
+
+button{
+    margin-right: 10px; /* Add some margin between the buttons */
+    color: #ffffff !important;
+    font-size: 24px;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: start; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 20px;
+    margin-left: 100px;
+    
+}
+
+.box {
+    width: 400px; /* Set width of the card */
+    padding: 20px; /* Add padding inside the card */
+    background-color: white; /* Set background color of the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.sub-container {
+    font-size: 24px; /* Set font size for "SignUp" text */
+    margin-bottom: 20px; /* Add margin at the bottom */
+    color: #040436; /* Set color of the text */
+    text-align: center;
+}
+
+.c-form {
+    display: flex;
+    flex-direction: column; /* Arrange form items vertically */
+}
+
+.c-width {
+    width: 100%; /* Set width to 100% */
+    margin-bottom: 20px; /* Add margin at the bottom */
+    
+}
+
+mat-form-field {
+    border-color: #040436; /* Set outline color for form fields */
+    
+}
+
+.center {
+    text-align: center; /* Align content center */
+    color: #040436;
+}
+
+.btn {
+   border: 1px solid #040436;
+   border-radius: 20px;
+    color: #040436 !important; /* Set text color of buttons */
+    margin-right: 10px; /* Add margin between buttons */
+    font-size: 18px;
+    width: 100%
+}
+
+span {
+    font-size: 18pxpx; /* Set font size for the "CRM" text */
+    color: #040436;
+    cursor: pointer;
+}
+

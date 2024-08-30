@@ -1,0 +1,39 @@
+<div class="custom-dialog">
+  <div class="subject-close" *ngIf="ticket">
+    <div class="status-container">
+      <span class="status-tag">{{ ticket.result.status }}</span>
+    </div>
+    <div class="subject-and-close">
+      <p class="subject"><strong><h3>{{ ticket.result.subject }}</h3></strong></p>
+      <div *ngIf="isAdmin" class="close-button-container">
+        <button class="close-ticket-button" (click)="onCloseTicket()">Close Ticket</button>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-content *ngIf="ticket" class="custom-dialog-content">
+    <div *ngFor="let conversation of ticket.result.conversations" class="conversation">
+      <div class="timestamp">{{ formatDate(conversation.msgAt) }}</div>
+      <div [ngClass]="{ 'sender-message': isSender(conversation.sender), 'receiver-message': !isSender(conversation.sender) }">
+        <p class="message-sender">{{ conversation.sender }}</p>
+        <p class="message-text">{{ conversation.message }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="update-ticket">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" [disabled]="!updateForm.valid">Update Message</button>
+        <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+    <div *ngIf="statusMessage" class="status-message">
+      {{ statusMessage }}
+    </div>
+  </div>
+</div>

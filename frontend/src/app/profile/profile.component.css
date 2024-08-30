@@ -1,0 +1,174 @@
+.profile-wrapper {
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide native scrollbar */
+  padding: 40px; /* Use padding instead of margin */
+  box-sizing: border-box; /* Ensure padding is included in the height calculation */
+}
+
+.profile-scrollable-content {
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 20px; /* Adjust for hidden scrollbar width */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.profile-scrollable-content::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* Optional: just to ensure scrollbar is hidden */
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.add-button-container button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #040436;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.empty-message-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align at the top */
+  margin-top: 20px; /* Adjust as needed */
+  width: 100%;
+}
+
+.empty-message-container p {
+  background-color: white;
+  border: 1px solid #0c0c0c; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Padding inside the box */
+  margin: 0; /* Remove default margin */
+  text-align: center; /* Center the text */
+  font-weight: bold;
+}
+
+.flexible-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 8px; /* Reduced gap */
+  padding-bottom: 20px; /* Add padding at the bottom of the container */
+  margin-bottom: 80px;
+}
+
+.client-card-container {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  margin-left: 16px; /* Added margin to the left */
+}
+
+.ticket-card-container {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.update-container {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  margin-top: 0;
+}
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px; /* Add padding inside cards */
+}
+
+.client-card,
+.ticket-card {
+  margin: 8px; /* Add margin inside cards */
+  border: 2px solid #000000; /* Add border to update component */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.update-container {
+  margin: 10px;
+}
+
+.mat-card-content {
+  position: relative;
+  padding: 8px; /* Add padding inside mat-card content */
+}
+
+.mat-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container h2 {
+  margin-left: 10px;
+}
+
+.ticket-card .header-container .mat-icon {
+  margin-left: auto; /* Ensure delete icon is on the right side */
+}
+
+.nested-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow: hidden; /* Prevent nested cards from overflowing */
+}
+
+.nested-card {
+  flex: 1 1 calc(50% - 16px); /* Two cards in a row with gap */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  margin-bottom: 8px;
+  border: 1px solid #ccc; /* Add border to nested cards */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Add padding inside nested cards */
+}
+
+.ticket-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #040436;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Responsive behavior for smaller screens */
+@media (max-width: 765px) {
+  .flexible-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .client-card-container,
+  .ticket-card-container,
+  .update-container {
+    flex: 1 1 100%;
+    margin: 10px;
+  }
+
+  .nested-card {
+    flex: 1 1 100%; /* Ensure nested cards take full width on smaller screens */
+  }
+}

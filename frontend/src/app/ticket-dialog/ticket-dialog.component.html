@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{inputdata.title}}</h1>
+<div mat-dialog-content>
+
+    <form [formGroup]="AddForm" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>From</mat-label>
+          <input matInput formControlName="sender">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+            <mat-label>Subject</mat-label>
+            <input matInput formControlName="subject">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="message"></textarea>
+        </mat-form-field>
+      
+        <div class="button-container">
+            <button type="submit" (click)="SaveTicket()">Save</button>
+            <button mat-dialog-close>Cancel</button>
+        </div>
+        
+    </form>
+
+</div>
+

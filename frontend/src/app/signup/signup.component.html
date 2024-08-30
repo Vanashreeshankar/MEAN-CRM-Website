@@ -1,0 +1,103 @@
+<div class="bg-class">
+
+    <header>
+        <mat-toolbar>
+            <span class="title">CRM</span>
+            <div class="button-container">
+
+                <button mat-button routerLink="/signin" routerLinkActive="active">SignIn</button>
+                <button mat-button routerLink="/signup" routerLinkActive="active">SignUp</button>
+            </div>
+           
+        </mat-toolbar>
+       
+    </header>
+
+
+    <div class="container">
+   
+        <mat-card class="box">
+            <div class="sub-container">SignUp</div>
+
+
+            <form [formGroup]="signupForm" class="c-form">
+
+                <div class="center">
+    
+                    <mat-radio-group formControlName="role" >
+                        <mat-radio-button value="user">User</mat-radio-button>
+                        <mat-radio-button value="admin">Admin</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+    
+             
+                    <mat-form-field *ngIf="signupForm.get('role')?.value ==='admin'" class="c-width" hideRequiredMarker
+                        appearance="outline">
+                        <mat-label>Secret Key</mat-label>
+                        <input matInput required formControlName="key">
+                        
+                    </mat-form-field>
+               
+    
+                <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput required formControlName="email" required ="true">
+                    <mat-error  *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].invalid">
+                  <span *ngIf="signupForm.controls['email'].errors?.['required']">This field is mandatory</span>
+                  <span *ngIf="signupForm.controls['email'].errors?.['pattern']">This field is invalid</span>
+                 
+                </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+                    <mat-label> Name</mat-label>
+                    <input matInput required formControlName="username">
+                    <mat-error  *ngIf="signupForm.controls['username'].touched && signupForm.controls['username'].invalid">
+                        <span *ngIf="signupForm.controls['username'].errors?.['required']">This field is mandatory</span>
+                        <span *ngIf="signupForm.controls['username'].errors?.['pattern']">This field is invalid</span>
+                       
+                      </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput required formControlName="password" type="{{ hide ? 'password' : 'text' }}">
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    <mat-error  *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].invalid">
+                        <span *ngIf="signupForm.controls['password'].errors?.['required']">This field is mandatory</span>
+                        <span *ngIf="signupForm.controls['password'].errors?.['pattern']">This field is invalid</span>
+                       
+                      </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="c-width" hideRequiredMarker appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput required formControlName="C_password" type="{{ hide ? 'password' : 'text' }}" >
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    <mat-error  *ngIf="signupForm.controls['C_password'].touched && signupForm.controls['C_password'].invalid">
+                        <span *ngIf="signupForm.controls['C_password'].errors?.['required']">Confirm Password required</span>
+                        <span *ngIf="signupForm.hasError('confirmPasswordValidator','C_password')">Password not matching</span>
+                       
+                      </mat-error>
+                </mat-form-field>
+    
+                <div class="center">
+                    <button mat-flat-button class="btn" type="button" routerLink="/signin">SignIn</button>
+    
+                    <button mat-flat-button class="btn1" type="button" (click)="handleSubmit()" [disabled]="!(signupForm.valid && signupForm.dirty)">SignUp</button>
+                </div>
+    
+                <p>Already have an Account? <span routerLink="/signin" routerLinkActive="active">SignIn</span></p>
+    
+    
+            </form>
+
+        </mat-card>
+
+    </div>
+    
+</div>
+    
+
+
+ 

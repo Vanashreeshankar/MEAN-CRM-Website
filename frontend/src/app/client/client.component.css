@@ -1,0 +1,88 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.client {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column; /* Ensure flex direction is column */
+}
+
+/* Hides scrollbar while allowing scrolling */
+.client ::-webkit-scrollbar {
+  display: none;
+}
+
+.client h1 {
+  margin-left: 20px; /* Add space between h1 and sub-container */
+}
+
+
+.client .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 20px 60px; /* Adjust margin for desired spacing */
+  padding-bottom: 80px; /* Add padding to the bottom */
+}
+
+.client .sub-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.search-icon {
+  margin-left: -30px;
+  /* Adjust icon position */
+}
+
+.client .table-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.client table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.client th,
+.client td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #040436;
+}
+
+.client th {
+  background-color: #f2f2f2;
+}
+
+.client .mat-paginator {
+  margin-top: 20px;
+}
+
+/* Add a margin to the bottom of the table container */
+.client .table-container {
+  margin-bottom: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .client .container {
+    padding: 0 10px;
+  }
+
+  .client th,
+  .client td {
+    color: #040436;
+  }
+}
