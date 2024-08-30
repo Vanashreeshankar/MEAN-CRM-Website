@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    user: crm.company.in@gmail.com,
+    pass: ncleywbpnfoipryi
   },
   logger: true, // Enable logging to console
   debug: true, // Include SMTP traffic in the logs
