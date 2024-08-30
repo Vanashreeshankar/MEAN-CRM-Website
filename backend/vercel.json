@@ -1,12 +1,6 @@
 {
     "version": 2,
     "builds":[{"src":"./*.js", "use":"@vercel/node"}],
-     "functions": [{
-    "backend/functions/email.helper.js": {
-      "memory": 512,
-      "maxDuration": 60
-      }
-     }],
     "routes":[{"src":"/(.*)", "dest":"/", "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]}]
     
 }
