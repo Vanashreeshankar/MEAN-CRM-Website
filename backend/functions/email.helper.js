@@ -1,23 +1,23 @@
+// emailProcessor.js
 const nodemailer = require('nodemailer');
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER, // Your email address
-        pass: process.env.EMAIL_PASS  // Your email password
-    }
-});
+const emailProcessor = async ({ to, subject, text }) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+    });
 
-const emailProcessor = {
-    from: process.env.EMAIL_USER,
-    to: 'kavya1981shree@gmail.com',
-    subject: 'Test Email',
-    text: 'Hello from Vercel!'
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to,
+        subject,
+        text,
+    };
+
+    return transporter.sendMail(mailOptions);
 };
 
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Message sent: %s', info.messageId);
-});
+module.exports = emailProcessor;
