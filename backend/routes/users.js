@@ -53,6 +53,15 @@ router.get("/", userAuthorization, async (req, res) => {
 
 })
 
+router.get('/test-email', (req, res) => {
+  emailProcessor({
+    email: 'kavya1981shree@gmail.com',
+    pin: '123456',
+    type: 'request-new-password',
+  });
+  res.send('Test email sent');
+});
+
 
 
 router.post('/signup', async (req, res) => {
