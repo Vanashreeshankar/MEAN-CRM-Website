@@ -182,50 +182,29 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
    
 });
 
-router.patch("/reset-password", updatePassValidation, async (req, res) => {
-    const { email, pin, newPassword } = req.body;
+router.post('/reset-password', async (req, res) => {
+    const { email } = req.body;
 
-    const getPin = await getPinByEmailPin(email, pin);
-
-    // 2. validate pin
-    if (getPin?._id) {
-        const dbDate = getPin.addedAt;
-        const expiresIn = 1;
-
-        let expDate = dbDate.setDate(dbDate.getDate() + expiresIn);
-
-        const today = new Date();
-
-        if (today > expDate) {
-
-            return res.json({ status: "error", message: "Invalid or expired pin." });
-
-        }
-
-        // encrypt new password
-        const hashedPass = await hashPassword(newPassword);
-
-        const user = await updatePassword(email, hashedPass);
-
-
-        if (user._id) {
-            // send email notification
-            emailProcessor({ email, type: "update-password-success" });
-
-            ////delete pin from db
-            deletePin(email, pin);
-
-            return res.json({
-                status: "success",
-                message: "Your password has been updated",
-            });
-        }
+    if (!email) {
+        return res.status(400).send('Email is required');
     }
 
-    res.json({
-        status: "error",
-        message: "Unable to update your password. plz try again later",
-    });
+    // Generate a reset link (placeholder for actual link generation logic)
+    const resetLink = `https://yourdomain.com/reset-password/${email}`;
+
+    try {
+        await emailProcessor({
+            to: email,
+            subject: 'Password Reset Request',
+            text: `You requested a password reset. Click the following link to reset your password: ${resetLink}`,
+        });
+
+        console.log('Message sent');
+        res.send('Password reset email sent successfully');
+    } catch (error) {
+        console.error('Error in reset-password:', error);
+        res.status(500).send('Error sending password reset email');
+    }
 });
 
 router.delete("/logout", userAuthorization, async (req, res) => {
