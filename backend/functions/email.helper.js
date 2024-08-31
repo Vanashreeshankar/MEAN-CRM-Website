@@ -1,19 +1,36 @@
 const nodemailer = require("nodemailer");
 
+const nodemailer = require('nodemailer');
+
+// Configure the transporter with your SMTP provider details
 const transporter = nodemailer.createTransport({
- 
-  service:'gmail',
-  auth: {
-    user: process.env.EMAIL_USER, 
-   pass: process.env.EMAIL_PASS
- },
- 
- tls: {
-    rejectUnauthorized: false
-  }, 
-port: 465,
-secure: false
+    host: `smtp.gmail.com`,
+    port: `465`,
+    secure: true, // true for port 465, false for other ports
+    auth: {
+        user: `crm.company.in@gmail.com`, // SMTP username
+        pass: `ncleywbpnfoipryi`, // SMTP password
+    },
 });
+
+// Function to send email
+const sendEmail = async (to, subject, text, html) => {
+    const mailOptions = {
+        from: `"Your Name" <${process.env.SMTP_USER}>`, // sender address
+        to, // list of receivers
+        subject, // Subject line
+        text, // plain text body
+        html, // html body
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
+};
+
 
 const send = (info) => {
   return new Promise(async (resolve, reject) => {
