@@ -18,7 +18,7 @@ const { getUserById,
     updatePassword
 } = require('../functions/user_function');
 
-const {emailProcessor} = require('../functions/email.helper');
+const emailProcessor = require('../functions/email.helper');
 
 const {
     resetPassReqValidation,
