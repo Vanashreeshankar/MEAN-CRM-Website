@@ -1,47 +1,34 @@
 const nodemailer = require("nodemailer");
 
-const nodemailer = require('nodemailer');
-
 // Configure the transporter with your SMTP provider details
 const transporter = nodemailer.createTransport({
-    host: `smtp.gmail.com`,
-    port: `465`,
-    secure: true, // true for port 465, false for other ports
-    auth: {
-        user: `crm.company.in@gmail.com`, // SMTP username
-        pass: `ncleywbpnfoipryi`, // SMTP password
-    },
+  host: `smtp.gmail.com`,
+  port: `465`,
+  secure: true, // true for port 465, false for other ports
+  auth: {
+      user: `crm.company.in@gmail.com`, // SMTP username
+      pass: `ncleywbpnfoipryi`, // SMTP password
+  },
+  tls: {
+  rejectUnauthorized: false
+}
 });
-
-// Function to send email
-const sendEmail = async (to, subject, text, html) => {
-    const mailOptions = {
-        from: `"Your Name" <${process.env.SMTP_USER}>`, // sender address
-        to, // list of receivers
-        subject, // Subject line
-        text, // plain text body
-        html, // html body
-    };
-
-    try {
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-    } catch (error) {
-        console.error('Error sending email:', error);
-    }
-};
-
 
 const send = (info) => {
   return new Promise(async (resolve, reject) => {
     try {
+      // send mail with defined transport object
       let result = await transporter.sendMail(info);
-  console.log("Message sent: %s", result.messageId);
-  console.log("Full result:", result);
-  resolve(result);
+
+      console.log("Message sent: %s", result.messageId);
+      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+      // Preview only available when sending through an Ethereal account
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(result));
+      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+      resolve(result);
     } catch (error) {
-      console.log('error sending mail:',error)
-     console.error('TLS error:', error.message)
       console.log(error);
     }
   });
@@ -83,5 +70,6 @@ const emailProcessor = ({ email, pin, type, verificationLink = "https://mean-crm
       break;
   }
 };
+
 
 module.exports =  emailProcessor ;
