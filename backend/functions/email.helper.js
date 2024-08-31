@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const mailOptions = {
+const emailProcessor = {
     from: process.env.EMAIL_USER,
     to: 'kavya1981shree@gmail.com',
     subject: 'Test Email',
