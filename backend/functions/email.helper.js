@@ -14,6 +14,7 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
   logger: true, // Enable detailed logging
+  debug: true,  // Show SMTP traffic
 });
 
 // Verify SMTP configuration
