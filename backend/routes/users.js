@@ -179,50 +179,52 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
 });
 
 router.patch("/reset-password", updatePassValidation, async (req, res) => {
-    const { email, pin, newPassword } = req.body;
+    try {
+        const { email, pin, newPassword } = req.body;
 
-    const getPin = await getPinByEmailPin(email, pin);
+        const getPin = await getPinByEmailPin(email, pin);
 
-    // 2. validate pin
-    if (getPin?._id) {
-        const dbDate = getPin.addedAt;
-        const expiresIn = 1;
+        // Validate the pin
+        if (getPin?._id) {
+            const dbDate = new Date(getPin.addedAt);
+            const expiresIn = 1; // Pin expires in 1 day
 
-        let expDate = dbDate.setDate(dbDate.getDate() + expiresIn);
+            const expDate = new Date(dbDate.setDate(dbDate.getDate() + expiresIn));
+            const today = new Date();
 
-        const today = new Date();
+            if (today > expDate) {
+                return res.json({ status: "error", message: "Invalid or expired pin." });
+            }
 
-        if (today > expDate) {
+            // Encrypt the new password
+            const hashedPass = await hashPassword(newPassword);
 
-            return res.json({ status: "error", message: "Invalid or expired pin." });
+            const user = await updatePassword(email, hashedPass);
 
+            if (user._id) {
+                // Send email notification for successful password update
+                await emailProcessor({ email, type: "update-password-success" });
+
+                // Delete pin from database
+                await deletePin(email, pin);
+
+                return res.json({
+                    status: "success",
+                    message: "Your password has been updated",
+                });
+            }
         }
 
-        // encrypt new password
-        const hashedPass = await hashPassword(newPassword);
-
-        const user = await updatePassword(email, hashedPass);
-
-
-        if (user._id) {
-            // send email notification
-            emailProcessor({ email, type: "update-password-success" });
-
-            ////delete pin from db
-            deletePin(email, pin);
-
-            return res.json({
-                status: "success",
-                message: "Your password has been updated",
-            });
-        }
+        res.json({
+            status: "error",
+            message: "Unable to update your password. Please try again later.",
+        });
+    } catch (error) {
+        console.error('Error in reset-password (PATCH):', error);
+        res.status(500).json({ status: "error", message: "Internal server error." });
     }
-
-    res.json({
-        status: "error",
-        message: "Unable to update your password. plz try again later",
-    });
 });
+
 
 router.delete("/logout", userAuthorization, async (req, res) => {
     const { authorization } = req.headers;
