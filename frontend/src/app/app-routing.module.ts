@@ -18,10 +18,11 @@ import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
 
-  //{path:'',redirectTo:'signup', pathMatch:'full'},
-  { path: '', component: SigninComponent },
-
+  const routes: Routes = [
+  { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'signin', component: SigninComponent },
+  { path: '**', redirectTo: 'signin' },  // Redirect any undefined routes to /signin
+
   { path: 'signup', component: SignupComponent },
   { path: 'resetpassword', component: ResetComponent },
   {
