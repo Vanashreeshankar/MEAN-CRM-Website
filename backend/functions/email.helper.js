@@ -65,7 +65,7 @@ const emailProcessor = async ({ email, pin, type, verificationLink = "https://cr
                 subject: "Password Updated", // Subject line
                 text: "Your new password has been updated.", // plain text body
                 html: `<b>Hello,</b><br>
-                        <p>You can now log in with your new password <a href="https://crm-frontend-website.vercel.app/signin">here</a>.</p>`, // html body
+                        <p>You can now log in with your new password <a href="https://crm-frontend-website.vercel.app/signin" target="_blank">here</a>.</p>`, // html body
             };
             break;
 
