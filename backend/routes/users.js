@@ -29,9 +29,6 @@ const {
 
 const router = express.Router();
 
-
-
-
 router.all("/", (req, res, next) => {
     // res.json({message:"return"});
     next();
@@ -42,14 +39,10 @@ router.get("/", userAuthorization, async (req, res) => {
 
     const _id = req.userId;
 
-
     const userProf = await getUserById(_id);
 
     console.log(userProf)
     res.json({ userProf });
-
-
-
 
 })
 
@@ -151,28 +144,37 @@ router.get('/currentUser', async (req, res) => {
     }
   });
 
-router.post('/reset-password', async (req, res) => {
-    const { email } = req.body;
-
-    if (!email) {
-        return res.status(400).send('Email is required');
-    }
-
-    // Generate a reset link (placeholder for actual link generation logic)
-    const resetLink = `https://yourdomain.com/reset-password/${email}`;
-
+router.post("/reset-password", resetPassReqValidation, async (req, res) => {
     try {
-        await emailProcessor({
-            to: email,
-            subject: 'Password Reset Request',
-            text: `You requested a password reset. Click the following link to reset your password: ${resetLink}`,
-        });
+        const { email } = req.body;
 
-        console.log('Message sent');
-        res.send('Password reset email sent successfully');
+        const user = await getUserByEmail(email);
+    
+        if (user && user._id) {
+            // Create a unique 6-digit pin
+            const setPin = await setPasswordRestPin(email);
+    
+            await emailProcessor({
+                email,
+                pin: setPin.pin,
+                type: "request-new-password",
+            });
+
+            console.log('Email sent successfully');
+            res.json({
+                status: "success",
+                message: "If the email exists in our database, the password reset pin will be sent shortly.",
+            });
+        } else {
+            // You can choose to send a success message anyway for security reasons
+            res.json({
+                status: "success",
+                message: "If the email exists in our database, the password reset pin will be sent shortly.",
+            });
+        }
     } catch (error) {
         console.error('Error in reset-password:', error);
-        res.status(500).send('Error sending password reset email');
+        res.status(500).json({ status: "error", message: "Internal server error" });
     }
 });
 
