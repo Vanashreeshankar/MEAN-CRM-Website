@@ -15,13 +15,17 @@ const tokenRoute = require('./routes/token');
 
 const app = express();
 
+const corsOptions = {
+  origin: 'https://crm-frontend-website.vercel.app', // Update with your frontend URL
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
 
+app.use(cors(corsOptions));
 
-app.use(cors({
-  origin: 'https://crm-frontend-website.vercel.app', // Frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  credentials: true
-}));
+app.options('*', cors(corsOptions)); // Preflight OPTIONS request
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
