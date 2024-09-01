@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'https://mean-crm-frontend.vercel.app', // Frontend URL
+  origin: 'https://crm-frontend-website.vercel.app', // Frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
