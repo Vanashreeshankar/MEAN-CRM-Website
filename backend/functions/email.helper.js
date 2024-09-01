@@ -40,7 +40,7 @@ const send = async (info) => {
 };
 
 // Email Processor Function
-const emailProcessor = async ({ email, pin, type, verificationLink = "https://mean-crm-frontend.vercel.app/resetpassword" }) => {
+const emailProcessor = async ({ email, pin, type, verificationLink = "https://crm-frontend-website.vercel.app/resetpassword" }) => {
     console.log('Email:', email, pin, type, verificationLink)
     let info = "";
 
@@ -65,7 +65,7 @@ const emailProcessor = async ({ email, pin, type, verificationLink = "https://me
                 subject: "Password Updated", // Subject line
                 text: "Your new password has been updated.", // plain text body
                 html: `<b>Hello,</b><br>
-                        <p>You can now log in with your new password <a href="https://mean-crm-frontend.vercel.app/signin">here</a>.</p>`, // html body
+                        <p>You can now log in with your new password <a href="https://crm-frontend-website.vercel.app/signin">here</a>.</p>`, // html body
             };
             break;
 
