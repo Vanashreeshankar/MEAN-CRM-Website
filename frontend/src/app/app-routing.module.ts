@@ -18,9 +18,8 @@ import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
+   { path: '', component: SigninComponent },
   { path: 'signin', component: SigninComponent },
-  { path: '**', redirectTo: 'signin' },
 
   { path: 'signup', component: SignupComponent },
   { path: 'resetpassword', component: ResetComponent },
@@ -55,10 +54,6 @@ const routes: Routes = [
       }, }*/
     ]
   }
-
-
-
-
 ];
 
 @NgModule({
