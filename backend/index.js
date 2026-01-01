@@ -33,16 +33,18 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "CRM Backend is running"
+  });
+});
 
 app.use('/dashboard', dashboardRoute);
 app.use('/users', userRoute);
 app.use('/clients', clientRoute);
 app.use('/tickets', ticketRoute);
 app.use('/token', tokenRoute);
-
-
-
-
 
 app.use("*",(req,res, next) => {
     const error = new Error("Not found");
