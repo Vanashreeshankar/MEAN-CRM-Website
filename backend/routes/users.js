@@ -89,43 +89,70 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-
-router.post('/login', async (req, res) => {
-    console.log(req.body);
+router.post('/login', async (req, res, next) => {
+  try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({ status: "error", message: "Invalid form submission!" });
+      return res
+        .status(400)
+        .json({ status: "error", message: "Invalid form submission!" });
     }
 
     const user = await getUserByEmail(email);
 
-    const passFromDb = user && user._id ? user.password : null;
-
-    if (!passFromDb)
-        return res.status(401).json({ status: "error", message: "Invalid email or password!" });
-
-    const result = await comparePassword(password, passFromDb);
-
-    if (!result) {
-        return res.status(401).json({ status: "error", message: "Invalid email or password!" });
+    if (!user || !user.password) {
+      return res
+        .status(401)
+        .json({ status: "error", message: "Invalid email or password!" });
     }
 
-    const accessJWT = await createAccessJWT(`${user._id}`, user.email, user.role, user.username);
-    const refreshJWT = await createRefreshJWT(`${user._id}`,user.email,user.role, user.username);
-    
-   
+    const isMatch = await comparePassword(password, user.password);
+
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ status: "error", message: "Invalid email or password!" });
+    }
+
+    const accessJWT = await createAccessJWT(
+      `${user._id}`,
+      user.email,
+      user.role,
+      user.username
+    );
+
+    //  DO NOT BLOCK LOGIN IF REFRESH TOKEN FAILS
+    let refreshJWT = null;
+    try {
+      refreshJWT = await createRefreshJWT(
+        `${user._id}`,
+        user.email,
+        user.role,
+        user.username
+      );
+    } catch (err) {
+      console.error("Refresh token failed:", err);
+    }
 
     return res.json({
-        status: "success",
-        message: "Login Successfully!",
-        username: user.username,
-        role:user.role,
-        email,
-        accessJWT,
-        refreshJWT,
+      status: "success",
+      message: "Login Successfully!",
+      username: user.username,
+      role: user.role,
+      email: user.email,
+      accessJWT,
+      refreshJWT,
     });
+
+  } catch (error) {
+    console.error("LOGIN ERROR:", error);
+    return res
+      .status(500)
+      .json({ status: "error", message: "Internal server error" });
+  }
 });
+
 
 router.get('/currentUser', async (req, res) => {
     try {
